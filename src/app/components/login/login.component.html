@@ -1,0 +1,27 @@
+<div fxLayout="column" fxFill fxLayoutAlign="center center">
+    <mat-card class="login-card" fxLayout="column" fxLayoutAlign="center center">
+        <mat-card-header>
+          <mat-card-title>{{loginConstants?.loginTitle}}</mat-card-title>
+          </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="signupForm" class="example-form" fxLayout="column">
+                <mat-form-field class="example-full-width" appearance="outline" floatLabel="none">
+                  <input type="text" formControlName="username" matInput [placeholder]="loginConstants?.username">
+                  <mat-icon matSuffix>person</mat-icon>
+                  <mat-error *ngIf="signup.username.invalid">{{ loginConstants?.loginTitle }}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="outline" floatLabel="none">
+                  <input type="password"  formControlName="password" matInput [placeholder]="loginConstants?.password">
+                  <mat-icon matSuffix>lock</mat-icon>
+                  <mat-error *ngIf="signup.password.invalid">{{ loginConstants?.passwordRequired }}</mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+          <mat-card-actions>
+            <button mat-button [disabled]="signupForm.invalid" mat-raised-button 
+            color="primary" (click)="signIn()">
+            {{loginConstants?.signIn}}</button>
+          </mat-card-actions>
+    </mat-card>
+
+</div>

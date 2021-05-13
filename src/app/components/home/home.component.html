@@ -1,0 +1,34 @@
+<div fxLayout="row" fxFill>
+    <div class="list-panel" fxFlex="25%" fxLayout="column">
+        <span fxLayout="column" fxLayoutAlign="center center" class="product-header">
+            Gleason
+        </span>
+        <mat-card class="list-card">
+            <span fxLayout="column" fxLayoutAlign="start center">
+                <span fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-icon>person</mat-icon>
+                    <span>{{user}}</span>
+                </span>
+            </span>
+            <mat-list>
+                <mat-list-item *ngFor="let item of menuItems">
+                  <mat-icon mat-list-icon>{{item.icon}}</mat-icon>
+                  <div mat-line>{{item.name}}</div>
+                </mat-list-item>
+            </mat-list>
+        </mat-card>
+    </div>
+    <div class="details-panel" fxLayout="column" fxFlex="75%">
+        <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
+            <button mat-icon-button class="toolbar-icon">
+              <mat-icon>menu</mat-icon>
+            </button>
+            <button mat-icon-button class="toolbar-icon" (click)="logout()">
+              <mat-icon >power</mat-icon>
+            </button>
+        </mat-toolbar>
+    </div>
+
+</div>
+
+
