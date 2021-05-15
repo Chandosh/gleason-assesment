@@ -1,0 +1,28 @@
+<div fxLayout="column" fxFill>
+    <div fxLayout="column" fxLayoutAlign="center center" class="product-header">
+        Gleason
+    </div>
+    <div class="list-container mat-elevation-z4" fxLayout="column">
+        <!-- <div fxLayout="row" class="user-detail" fxLayoutAlign="space-around center" >
+            <mat-icon>person</mat-icon>
+            <span>{{user}}</span>
+        </div> -->
+        <mat-expansion-panel class="side-panel" [expanded]="panelOpenState" 
+        (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title fxLayout="row" fxLayoutAlign="space-between center">
+                    <img class="user-image" src="assets/no-user-image.png"> 
+                    <span class="user-name">{{user}}</span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list fxLayout="column" class="side-panel-list">
+                <mat-list-item *ngFor="let item of menuItems" (click)="selectItem(item.name)">
+                    <mat-icon mat-list-icon>{{item.icon}}</mat-icon>
+                    <div mat-line>{{item.name}}</div>
+                </mat-list-item>
+            </mat-list>
+        </mat-expansion-panel>
+
+        
+    </div>
+</div>

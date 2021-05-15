@@ -1,32 +1,52 @@
 <div fxLayout="row" fxFill>
-    <div class="list-panel" fxFlex="25%" fxLayout="column">
-        <span fxLayout="column" fxLayoutAlign="center center" class="product-header">
-            Gleason
-        </span>
-        <mat-card class="list-card">
-            <span fxLayout="column" fxLayoutAlign="start center">
-                <span fxLayout="row" fxLayoutAlign="space-between center">
-                    <mat-icon>person</mat-icon>
-                    <span>{{user}}</span>
-                </span>
-            </span>
-            <mat-list>
-                <mat-list-item *ngFor="let item of menuItems">
-                  <mat-icon mat-list-icon>{{item.icon}}</mat-icon>
-                  <div mat-line>{{item.name}}</div>
-                </mat-list-item>
-            </mat-list>
-        </mat-card>
+
+    <div *ngIf="menuToggle" class="list-panel"  fxLayout="column">
+       <app-sidenav (menuChange)='menuSelection($event)'>
+       </app-sidenav>
     </div>
-    <div class="details-panel" fxLayout="column" fxFlex="75%">
-        <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
-            <button mat-icon-button class="toolbar-icon">
+
+    <div class="details-panel" fxLayout="column" class="full-width" [ngClass]="{'menu-open': menuToggle}">
+        <mat-toolbar class="mat-elevation-z4" fxLayout="row" fxLayoutAlign="space-between center">
+            <button mat-icon-button class="toolbar-icon" (click)="menuToggle = !menuToggle">
               <mat-icon>menu</mat-icon>
             </button>
             <button mat-icon-button class="toolbar-icon" (click)="logout()">
-              <mat-icon >power</mat-icon>
+              <mat-icon>power_settings_new</mat-icon>
             </button>
         </mat-toolbar>
+        <div class="detail-container">
+            <div class="detail-container-header" fxLayout="row" fxLayoutAlign="space-between center">
+                <span fxLayout="row" fxLayoutAlign="center center" class="menu-name">
+                    <mat-icon class="menu-icon">
+                        keyboard_arrow_left
+                    </mat-icon>
+                    {{viewComponent}}
+                </span>
+                <span>
+                    <span class="light-blue">
+                        App
+                    </span>
+                    / {{viewComponent}}
+                </span>
+            </div>
+
+            <div [ngSwitch]="viewComponent" class="indiviual-component-content">
+                <div *ngSwitchCase="'Dashboard'" fxFill fxLayoutAlign="center center">
+                    <app-dashboard></app-dashboard>
+                </div>
+                <div *ngSwitchCase="'User Management'" fxFill>
+                    <app-user-management></app-user-management>
+                </div>
+                <div *ngSwitchCase="'Applications'" fxFill fxLayoutAlign="center center"> 
+                    <app-applications></app-applications>
+                </div>
+        
+                <div *ngSwitchDefault fxFill fxLayoutAlign="center center">
+                    {{viewComponent}} Component
+                </div>
+            </div>
+          </div>
+
     </div>
 
 </div>

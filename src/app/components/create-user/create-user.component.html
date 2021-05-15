@@ -1,0 +1,84 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+  
+  <h4 mat-dialog-title>{{isUpdateMode ? 'Update User' : isViewOnlyMode ? 'View User' :'Add New User'}}</h4>
+  <mat-divider></mat-divider>
+      <mat-dialog-content class="mat-typography" fxLayout="row wrap">
+          <form class="customer-form" [formGroup]="createForm">
+            <div fxLayout="row" fxLayoutGap = "20px">
+                <div fxLayout="column" fxFlex="50%">
+
+                  <mat-label>Customer</mat-label>
+                  <mat-form-field class="customer-full-width" appearance="outline" floatLabel="none">
+                      <mat-select placeholder="Select Customer" formControlName="customer"  [disabled]="isViewOnlyMode">
+                          <mat-option *ngFor="let customer of customers" [value]="customer.role">
+                          {{customer.role}}
+                          </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="createForm.get('customer').hasError('required')">
+                        Customer is <strong>required</strong>
+                      </mat-error>
+                  </mat-form-field>
+
+                  <mat-label>Email</mat-label>
+                  <mat-form-field class="customer-full-width" appearance="outline" floatLabel="none">
+                    <input type="email" matInput formControlName="email" placeholder="Enter Email"  [readonly]="isViewOnlyMode">
+                    <mat-error *ngIf="createForm.get('email').hasError('email') && !createForm.get('email').hasError('required')">
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="createForm.get('email').hasError('required')">
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-label>First Name</mat-label>
+                  <mat-form-field class="customer-full-width" appearance="outline" floatLabel="none">
+                    <input type="text" matInput formControlName="firstName" placeholder="Enter First Name"  [readonly]="isViewOnlyMode">
+                    <mat-error *ngIf="createForm.get('firstName').hasError('required')">
+                      First Name is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-label>Last Name</mat-label>
+                  <mat-form-field class="customer-full-width" appearance="outline" floatLabel="none">
+                    <input type="text" matInput formControlName="lastName" placeholder="Enter Last Name"  [readonly]="isViewOnlyMode">
+                    <mat-error *ngIf="createForm.get('lastName').hasError('required')">
+                      Last Name is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-checkbox color="primary" formControlName="isTrialUser" [disabled]="isViewOnlyMode" >
+                    Trial User
+                  </mat-checkbox>
+
+
+                </div>
+                <div fxLayout="column" fxFlex="50%">
+                  <mat-label>Username</mat-label>
+                  <mat-form-field class="customer-full-width" appearance="outline" floatLabel="none">
+                    <input type="text" matInput formControlName="userName" placeholder="Enter Username"  [readonly]="isViewOnlyMode">
+                    <mat-error *ngIf="createForm.get('userName').hasError('required')">
+                      Username is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-label>Roles</mat-label>
+                  <div *ngFor="let role of roleControl.controls; let i = index"
+                   fxLayout="row" fxLayoutAlign="start center" class="role-item">
+                    <mat-checkbox color="primary" [formControl]="role" [disabled]="isViewOnlyMode">
+                      {{roles[i].name}}
+                    </mat-checkbox>
+                   </div>
+
+                </div>
+            </div>
+          </form>
+      </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button *ngIf="!isViewOnlyMode" mat-button mat-raised-button class="add-button" [disabled]="!createForm.valid" 
+    (click)="createUpdateCustomer()">
+        {{isUpdateMode ? 'Update' : 'Add'}}
+      </button>
+    <button mat-button mat-raised-button class="cancel-button"  mat-dialog-close>Reset</button>
+  
+  </mat-dialog-actions>

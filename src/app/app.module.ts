@@ -17,11 +17,29 @@ import { HomeComponent } from './components/home/home.component';
 import { CanActivateGuard } from './common/can-activate-guard';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UserManagementComponent } from './components/user-management/user-management.component';
+import { ApplicationsComponent } from './components/applications/applications.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatSelectModule} from '@angular/material/select';
+import { CreateUserComponent } from './components/create-user/create-user.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    SidenavComponent,
+    DashboardComponent,
+    UserManagementComponent,
+    ApplicationsComponent,
+    CreateUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,8 +55,17 @@ import {MatListModule} from '@angular/material/list';
     ReactiveFormsModule,
     MatToolbarModule,
     MatListModule,
+    MatExpansionModule,
+    MatTabsModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [CanActivateGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CreateUserComponent]
 })
 export class AppModule { }

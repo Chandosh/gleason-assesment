@@ -8,16 +8,22 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class HomeComponent implements OnInit {
 
-  user: string;
-  menuItems=[];
-  
-  constructor(private loginService: LoginService) { }
+ 
+  menuToggle: boolean;
+  viewComponent: string;
+  constructor(private loginService: LoginService) { 
+    this.menuToggle = true;
+    this.viewComponent = 'User Management';
+  }
 
   ngOnInit(): void {
-    this.user = this.loginService.getUserName();
+    
   }
   logout() {
     this.loginService.logout();
   }
 
+  menuSelection(menuItem){
+    this.viewComponent = menuItem;
+  }
 }

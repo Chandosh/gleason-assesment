@@ -1,3 +1,33 @@
-.list-card {
-    height: calc(100vh - 60px);
+.list-panel {
+    width: 20vw;
+}
+.full-width {
+    width: 100vw;
+}
+.menu-open {
+    width: 80vw;
+}
+.detail-container {
+    // height: calc(100% - 64px);
+    background-color: #f8f9fa;
+}
+
+.detail-container-header {
+    height: 80px;
+    padding: 20px 20px;
+    .menu-name {
+        font-size: 25px;
+        font-weight: bold;
+        .menu-icon {
+            font-size: 28px;
+            padding-right: 10px;
+        }   
+    }
+}
+.light-blue {
+    color: skyblue;
+}
+
+.indiviual-component-content {
+    height: calc(100vh - 144px);
 }
