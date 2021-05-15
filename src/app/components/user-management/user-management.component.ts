@@ -55,6 +55,7 @@ export class UserManagementComponent implements OnInit {
 
   updateValues() {
     this.dataSource = new MatTableDataSource(this.customerList);
+    this.dataSource.sort = this.sort;
     this.length = this.customerList.length;
   }
 
